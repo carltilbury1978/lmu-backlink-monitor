@@ -1,0 +1,38 @@
+name: LMU free backlink verification
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'backlinks/targets.csv'
+      - 'backlinks/verify.py'
+      - '.github/workflows/lmu-backlink-check.yml'
+  schedule:
+    - cron: '17 6 * * 1'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lmu-backlink-check
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check specified public backlinks
+        run: python backlinks/verify.py
+      - name: Save latest CSV and summary
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backlinks/report.csv backlinks/summary.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Record read-only backlink verification"
+            git push
+          fi
