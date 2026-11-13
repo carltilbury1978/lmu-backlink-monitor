@@ -1,0 +1,32 @@
+name: LMU free directory application (one-time)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/lmu-free-directory-apply-once.yml'
+permissions:
+  contents: write
+concurrency:
+  group: lmu-free-directory-application
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply once via publisher-authorised free API
+        run: python backlinks/apply_best_rated_once.py
+      - name: Store non-sensitive application status
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backlinks/best-rated-status.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record free directory application status"
+            git push
+          fi
