@@ -1,8 +1,8 @@
 # Love My Uniform backlink verification
 
-Checked: 2026-11-13 13:57 UTC
+Checked: 2026-11-13 13:58 UTC
 
-Verified direct HTML links: 1
+Verified direct HTML links: 2
 Not found on the fetched page: 0
 Unknown / blocked / manual checks needed: 0
 
