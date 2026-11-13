@@ -10,7 +10,7 @@ The script checks specifically nominated public pages, looks for an actual HTML 
 python backlinks/verify.py
 ```
 
-The `LMU free backlink verification` GitHub Action runs once a week on Monday at 06:17 UTC and whenever `backlinks/targets.csv` or `backlinks/verify.py` changes. You can run it manually from GitHub Actions too.
+The `LMU free backlink verification` GitHub Action runs every day at 06:17 UTC and whenever `backlinks/targets.csv` or `backlinks/verify.py` changes. You can run it manually from GitHub Actions too.
 
 The reports are in `backlinks/report.csv` and `backlinks/summary.md` after a successful run. The initial list is deliberately short. Add only direct, verified profile or article URLs.
 
