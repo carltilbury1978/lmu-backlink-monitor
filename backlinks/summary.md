@@ -1,10 +1,10 @@
 # Love My Uniform backlink verification
 
-Checked: 2026-11-24 17:44 UTC
+Checked: 2026-11-25 17:14 UTC
 
 Verified direct HTML links: 4
-Not found on the fetched page: 1
-Unknown / blocked / manual checks needed: 2
+Not found on the fetched page: 0
+Unknown / blocked / manual checks needed: 3
 
 This verifies links on the listed pages only. It does not create links,
 rank their SEO value, bypass verification, or submit directory listings.
